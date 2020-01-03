@@ -1,0 +1,30 @@
+{
+  "name": "steelseries_imagesync_textsignboardmaker",
+  "version": "1.0.0",
+  "description": "text signboard gif maker for steelseries imagesync plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhogoforbroke/steelseries_imagesync_textSignboardMaker.git"
+  },
+  "keywords": [
+    "keyboard",
+    "steelseries",
+    "imagesync",
+    "gif",
+    "text"
+  ],
+  "author": "Jonatas Marinho <jmarinho.dev@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhogoforbroke/steelseries_imagesync_textSignboardMaker/issues"
+  },
+  "homepage": "https://github.com/jhogoforbroke/steelseries_imagesync_textSignboardMaker#readme",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "gifencoder": "^2.0.1"
+  }
+}
