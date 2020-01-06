@@ -3,7 +3,7 @@
 const fs = require('fs')
 const GIFEncoder = require('gifencoder')
 
-const gif = (options, name, frames) => {
+const gif = (options, keyboard, name, frames) => {
   const encoder = new GIFEncoder(keyboard.HEIGHT, keyboard.WIDTH)
   encoder.createReadStream().pipe(fs.createWriteStream(name))
 
@@ -15,4 +15,8 @@ const gif = (options, name, frames) => {
   frames.forEach(frame => encoder.addFrame(frame))
 
   encoder.finish()
+}
+
+module.exports = {
+  gif
 }

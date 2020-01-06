@@ -14,7 +14,7 @@ const setPositions = (keyboard) => {
 const frame = (keyboard, backgroundOptions, textOptions) => {
   ilustrator.drawBackground(keyboard, backgroundOptions.color)
   ilustrator.drawText(textOptions.text, textOptions.x, textOptions.y)
-  return ilustrator.canvas
+  return ilustrator.getCanvasCopy()
 }
 
 const leftToRight = (keyboard, background, text) => {
@@ -22,7 +22,7 @@ const leftToRight = (keyboard, background, text) => {
     setPositions(keyboard)
   }
 
-  let frames = []
+  const frames = []
   for (let i = positions.X.LEFT, len = positions.X.RIGHT; i < len; i += keyboard.STEP) {
     frames.push(frame(keyboard, background, { text, x: i, y: positions.Y.CENTER }))
   }

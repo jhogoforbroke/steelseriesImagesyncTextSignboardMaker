@@ -1,11 +1,10 @@
 'use strict'
 
+let canvas
 const { createCanvas } = require('canvas')
 
-const canvas
-
 const createKeyboardSignboard = (keyboard, font) => {
-  const canvas = createCanvas(keyboard.HEIGHT, keyboard.WIDTH)
+  canvas = createCanvas(keyboard.HEIGHT, keyboard.WIDTH)
   canvas = canvas.getContext('2d')
   canvas.font = font || '30px Arial'
 }
@@ -25,9 +24,13 @@ const drawText = (keyboard, text, x, y, font) => {
   canvas.strokeText(text, x, y)
 }
 
+const getCanvasCopy = () => {
+  return { ...canvas }
+}
+
 module.exports = {
   createKeyboardSignboard,
   drawBackground,
   drawText,
-  canvas: { ...canvas }
+  getCanvasCopy
 }
