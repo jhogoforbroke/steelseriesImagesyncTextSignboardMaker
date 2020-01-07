@@ -2,9 +2,6 @@ version: 2.1
 
 jobs:
   build:
-    branches:
-      only:
-        - master
     docker:
       - image: node:12.13.1
 
