@@ -1,10 +1,10 @@
 {
-  "name": "steelseries_imagesync_textsignboardmaker",
+  "name": "steelseriesImagesyncTextsignboardmaker",
   "version": "1.0.0",
   "description": "text signboard gif maker for steelseries imagesync plugin",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/_mocha --inspect=0.0.0.0:9999 --exit --recursive --timeout 10000 './test/{,/**}/*.test.js'"
+    "test": "node_modules/mocha/bin/_mocha --inspect=0.0.0.0:9999 --exit --recursive --timeout 10000 './test/{,!(node_modules|libs)/**}/*.test.js'"
   },
   "repository": {
     "type": "git",
