@@ -5,9 +5,12 @@
 version: 2
 jobs:
   build:
+    branches:
+      only:
+        - master
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: node:12.13.1
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images

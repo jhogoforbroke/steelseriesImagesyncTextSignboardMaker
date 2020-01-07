@@ -4,11 +4,11 @@
   "description": "text signboard gif maker for steelseries imagesync plugin",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/_mocha --inspect=0.0.0.0:9999 --exit --recursive --timeout 10000 './{,!(node_modules|libs)/**}/*.test.js' './test/{,!(node_modules|libs)/**}/*.test.js'"
+    "test": "mocha --inspect=0.0.0.0:9999 --exit --recursive --timeout 10000 './test/{,!(node_modules|libs)/**}/*.test.js'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jhogoforbroke/steelseries_imagesync_textSignboardMaker.git"
+    "url": "git+https://github.com/jhogoforbroke/steelseriesImagesyncTextSignboardMaker.git"
   },
   "keywords": [
     "keyboard",
@@ -20,9 +20,9 @@
   "author": "Jonatas Marinho <jmarinho.dev@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jhogoforbroke/steelseries_imagesync_textSignboardMaker/issues"
+    "url": "https://github.com/jhogoforbroke/steelseriesImagesyncTextSignboardMaker/issues"
   },
-  "homepage": "https://github.com/jhogoforbroke/steelseries_imagesync_textSignboardMaker#readme",
+  "homepage": "https://github.com/jhogoforbroke/steelseriesImagesyncTextSignboardMaker#readme",
   "dependencies": {
     "canvas": "^2.6.1",
     "gifencoder": "^2.0.1"
