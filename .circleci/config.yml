@@ -1,36 +1,24 @@
-version: 2.1
-
 jobs:
   build:
+    working_directory: ~/repo
     docker:
       - image: node:12.13.1
-
-    working_directory: ~/repo
-
     steps:
       - checkout
-
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm install
-
       - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - sonarcloud/scan
-
+            - ./node_modules
       - run: npm test
-
+      - sonarcloud/scan
 orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.1
-
+  sonarcloud: sonarsource/sonarcloud@1.0.0
+version: 2.1
 workflows:
   main:
     jobs:
       - build:
-        context: SonarCloud
+        context: Sonarcloud
