@@ -1,3 +1,4 @@
+version: 2.1
 jobs:
   build:
     working_directory: ~/repo
@@ -5,13 +6,7 @@ jobs:
       - image: node:12.13.1
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
       - run: npm test
       - sonarcloud/scan
 orbs:
@@ -21,4 +16,4 @@ workflows:
   main:
     jobs:
       - build:
-        context: Sonarcloud
+          context: SonarCloud
