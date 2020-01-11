@@ -32,6 +32,7 @@
   },
   "scripts": {
     "test": "mocha --inspect=0.0.0.0:9999 --exit --recursive --timeout 10000 './test/{,!(node_modules|libs)/**}/*.test.js'",
+    "lint": "eslint .",
     "coverage": "nyc npm run test"
   },
   "repository": {
@@ -57,6 +58,13 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
     "mocha": "^7.0.0",
     "nyc": "^15.0.0",
     "proxyquire": "^2.1.3",
