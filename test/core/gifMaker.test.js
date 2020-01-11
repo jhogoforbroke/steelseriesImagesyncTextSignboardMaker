@@ -46,11 +46,18 @@ const gitMaker = proxyquire('../../core/gifMaker', {
   gifencoder: gifEncoderMock
 })
 
+const frames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 describe('gifMaker', () => {
   it('should generate a gif frame by frame', () => {
-    const frames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    gitMaker.gif(options, mockKeyboard, FILENAME, frames)
-
+    gitMaker.gif(options, mockKeyboard, frames, FILENAME)
     expect(addFrame.callCount).to.equal(frames.length)
+  })
+
+  describe('when it\'s no gifName', () => {
+    it('should create a random gif name', () => {
+      gitMaker.gif(options, mockKeyboard, frames)
+      sinon.assert.calledWith(fsMock.createWriteStream, sinon.match.string)
+    })
   })
 })

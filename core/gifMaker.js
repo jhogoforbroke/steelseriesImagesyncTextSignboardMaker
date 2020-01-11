@@ -3,7 +3,11 @@
 const fs = require('fs')
 const GIFEncoder = require('gifencoder')
 
-const gif = (options, keyboard, name, frames) => {
+const randomGifName = () => {
+  return `stlsImageSync_${Math.random().toString(36).substring(3)}.gif`
+}
+
+const gif = (options, keyboard, frames, name = randomGifName()) => {
   const encoder = new GIFEncoder(keyboard.HEIGHT, keyboard.WIDTH)
   encoder.createReadStream().pipe(fs.createWriteStream(name))
 

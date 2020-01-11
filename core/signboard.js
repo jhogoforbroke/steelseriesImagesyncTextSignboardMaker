@@ -3,9 +3,9 @@
 const { gif } = require('./gifMaker')
 const animator = require('./animator')
 
-const text2Gif = (options, keyboard, background, text) => {
+const text2Gif = (options, keyboard, background, text, gifName) => {
   const frames = animator.leftToRight(keyboard, background, text)
-  gif(options, keyboard, 'myanimated.gif', frames)
+  gif(options, keyboard, frames, gifName)
 }
 
 module.exports = {
