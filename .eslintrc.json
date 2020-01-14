@@ -22,7 +22,20 @@
   "globals": {
     "document": "readonly",
     "navigator": "readonly",
-    "window": "readonly"
+    "window": "readonly",
+    "after": "readonly",
+    "afterEach": "readonly",
+    "before": "readonly",
+    "beforeEach": "readonly",
+    "describe": "readonly",
+    "context": "readonly",
+    "it": "readonly",
+    "run": "readonly",
+    "specify": "readonly",
+    "xcontext": "readonly",
+    "xdescribe": "readonly",
+    "xit": "readonly",
+    "xspecify": "readonly"
   },
 
   "rules": {
