@@ -3,38 +3,16 @@
 'use strict'
 
 const sinon = require('sinon')
-
 const proxyquire = require('proxyquire').noCallThru()
 
-const REPEAT = 0
-const DELAY = 500
-const QUALITY = 10
-
-const options = {
-  REPEAT,
-  DELAY,
-  QUALITY
-}
-
-const mockKeyboard = {
-  STEP: 10,
-  WIDTH: 500,
-  HEIGHT: 100
-}
-
-const background = {
-  color: '#SOMECOLOR'
-}
-
-const frames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-const animator = {
-  leftToRight: sinon.stub().returns(frames)
-}
-
-const gifMaker = {
-  gif: sinon.spy()
-}
+const {
+  options,
+  mockKeyboard,
+  background,
+  frames,
+  animator,
+  gifMaker
+} = require('../mocks')
 
 const signboard = proxyquire('../../core/signboard', {
   './animator': animator,

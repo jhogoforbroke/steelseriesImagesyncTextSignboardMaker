@@ -7,27 +7,15 @@ const sinon = require('sinon')
 
 const proxyquire = require('proxyquire').noCallThru()
 
-const POSX = 10
-const POSY = 11
-
-const mockKeyboard = {
-  STEP: 10,
-  WIDTH: 500,
-  HEIGHT: 100
-}
-
-const text = 'SOME TEXT'
-const color = '#000'
-
-const canvas = {
-  fillRect: sinon.spy(),
-  strokeText: sinon.spy()
-}
-canvas.getContext = sinon.stub().returns(canvas)
-
-const canvasMock = {
-  createCanvas: sinon.stub().returns(canvas)
-}
+const {
+  POSX,
+  POSY,
+  text,
+  color,
+  canvas,
+  mockKeyboard,
+  canvasMock
+} = require('../mocks')
 
 const ilustrator = proxyquire('../../core/ilustrator', {
   canvas: canvasMock

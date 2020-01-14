@@ -3,25 +3,13 @@
 'use strict'
 
 const { expect } = require('chai')
-const sinon = require('sinon')
-
 const proxyquire = require('proxyquire').noCallThru()
 
-const ilustrator = {
-  drawBackground: sinon.spy(),
-  drawText: sinon.spy(),
-  getCanvasCopy: sinon.stub().returns(() => ({}))
-}
-
-const background = {
-  color: '#SOMECOLOR'
-}
-
-const mockKeyboard = {
-  STEP: 10,
-  WIDTH: 500,
-  HEIGHT: 100
-}
+const {
+  mockKeyboard,
+  background,
+  ilustrator
+} = require('../mocks')
 
 const animator = proxyquire('../../core/animator', {
   './ilustrator': ilustrator
