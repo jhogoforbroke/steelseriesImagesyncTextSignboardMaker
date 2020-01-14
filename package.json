@@ -29,7 +29,7 @@
     "exclude": [
       "**/test/**",
       "**/config/**",
-      "index.js"
+      "./index.js"
     ]
   },
   "scripts": {
