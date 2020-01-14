@@ -27,7 +27,7 @@
       "text-summary"
     ],
     "exclude": [
-      "**/test/**"
+      "**/test/**",
       "**/config/**",
       "index.js"
     ]
