@@ -15,22 +15,26 @@ const {
   canvasMock
 } = require('../mocks')
 
-const ilustrator = proxyquire('../../core/ilustrator', {
+const getIlustrator = () => proxyquire('../../core/ilustrator', {
   canvas: canvasMock
 })
 
 describe('ilustrator', () => {
   describe('when draw the background', () => {
     describe('and not have a canvas ', () => {
+      const ilustratorWithoutCanvas = getIlustrator()
+
       before(() => {
-        ilustrator.createKeyboardSignboard = sinon.spy()
+        ilustratorWithoutCanvas.createKeyboardSignboard = sinon.spy()
       })
 
       it('should create a canvas', () => {
-        ilustrator.drawBackground(mockKeyboard, color)
+        ilustratorWithoutCanvas.drawBackground(mockKeyboard, color)
         sinon.assert.calledOnce(canvasMock.createCanvas)
       })
     })
+
+    const ilustrator = getIlustrator()
 
     beforeEach(() => {
       ilustrator.drawBackground(mockKeyboard, color)
@@ -47,15 +51,19 @@ describe('ilustrator', () => {
 
   describe('when draw the text', () => {
     describe('and not have a canvas', () => {
+      const ilustratorWithoutCanvas = getIlustrator()
+
       before(() => {
-        ilustrator.createKeyboardSignboard = sinon.spy()
+        ilustratorWithoutCanvas.createKeyboardSignboard = sinon.spy()
       })
 
       it('should create a canvas', () => {
-        ilustrator.drawText(mockKeyboard, text, 0, 0)
+        ilustratorWithoutCanvas.drawText(mockKeyboard, text, 0, 0)
         sinon.assert.calledOnce(canvasMock.createCanvas)
       })
     })
+
+    const ilustrator = getIlustrator()
 
     beforeEach(() => {
       ilustrator.drawText(mockKeyboard, text, POSX, POSY)
@@ -66,12 +74,20 @@ describe('ilustrator', () => {
     })
   })
 
-  it('should get a copy of canvas', () => {
-    ilustrator.drawBackground(mockKeyboard, color)
-    ilustrator.drawText(mockKeyboard, text, POSX, POSY)
+  describe('when get Canvas Copy', () => {
+    const ilustrator = getIlustrator()
 
-    const canvasCopy = ilustrator.getCanvasCopy()
+    it('should get a copy of canvas', () => {
+      ilustrator.drawBackground(mockKeyboard, color)
+      ilustrator.drawText(mockKeyboard, text, POSX, POSY)
 
-    expect(canvas).to.deep.equal(canvasCopy)
+      const canvasCopy = ilustrator.getCanvasCopy()
+
+      expect(canvas).to.deep.equal(canvasCopy)
+    })
+  })
+
+  afterEach(() => {
+    canvasMock.createCanvas.resetHistory()
   })
 })
