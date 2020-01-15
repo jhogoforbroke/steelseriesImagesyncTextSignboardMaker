@@ -40,5 +40,10 @@ describe('animator', () => {
       const frames = animator.leftToRight(mockKeyboard, background, 'SOME TEXT')
       expect(ilustrator.drawText.callCount).to.equal(frames.length)
     })
+
+    afterEach(() => {
+      ilustrator.drawText.resetHistory()
+      ilustrator.drawBackground.resetHistory()
+    })
   })
 })
