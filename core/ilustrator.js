@@ -21,6 +21,7 @@ const drawText = (keyboard, text, x, y, font) => {
   if (!canvas) {
     createKeyboardSignboard(keyboard, font)
   }
+  canvas.strokeStyle = '#fff'
   canvas.strokeText(text, x, y)
 }
 

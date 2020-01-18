@@ -1,7 +1,7 @@
 'use strict'
 
 const { text2Gif } = require('./core/signboard')
-const { RGB84Key } = require('./core/keyboard')
+const { RGB84Key } = require('./config/keyboard')
 
 const REPEAT = 0
 const DELAY = 500
