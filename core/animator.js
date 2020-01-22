@@ -2,24 +2,16 @@
 
 const ilustrator = require('./ilustrator')
 
-let positions
-
-const setPositions = (keyboard) => {
-  positions = {
-    X: { LEFT: -keyboard.WIDTH, CENTER: (keyboard.WIDTH / 2), RIGHT: (keyboard.WIDTH * 2) },
-    Y: { TOP: -keyboard.HEIGHT, CENTER: (keyboard.HEIGHT / 2), BOTTOM: (keyboard.HEIGHT * 2) }
-  }
-}
-
 const frame = (keyboard, backgroundOptions, textOptions) => {
   ilustrator.drawBackground(keyboard, backgroundOptions.color)
-  ilustrator.drawText(textOptions.text, textOptions.x, textOptions.y)
+  ilustrator.drawText(keyboard, textOptions.text, textOptions.x, textOptions.y)
   return ilustrator.getCanvasCopy()
 }
 
 const leftToRight = (keyboard, background, text) => {
-  if (!positions) {
-    setPositions(keyboard)
+  const positions = {
+    X: { LEFT: -(keyboard.WIDTH * 2), CENTER: (keyboard.WIDTH / 2), RIGHT: keyboard.WIDTH },
+    Y: { TOP: -(keyboard.HEIGHT * 2), CENTER: (keyboard.HEIGHT / 2), BOTTOM: keyboard.HEIGHT }
   }
 
   const frames = []
