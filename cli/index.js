@@ -12,7 +12,7 @@ const { text2Gif } = require('../core/signboard')
 const keyboard = require('../config/keyboard')
 
 const options = {
-  REPEAT: 1,
+  REPEAT: 0,
   DELAY: 100,
   QUALITY: 10
 }
