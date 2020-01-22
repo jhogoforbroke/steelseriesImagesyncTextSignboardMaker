@@ -8,7 +8,7 @@ const randomGifName = () => {
 }
 
 const gif = (options, keyboard, frames, name = randomGifName()) => {
-  const encoder = new GIFEncoder(keyboard.HEIGHT, keyboard.WIDTH)
+  const encoder = new GIFEncoder(keyboard.WIDTH, keyboard.HEIGHT)
   encoder.createReadStream().pipe(fs.createWriteStream(name))
 
   encoder.start()
