@@ -35,7 +35,7 @@ const gifMaker = {
 const ilustrator = {
   drawBackground: sinon.spy(),
   drawText: sinon.spy(),
-  getCanvasCopy: sinon.stub().returns(() => ({}))
+  getCanvasCopy: sinon.stub().returns({})
 }
 
 const canvas = {
