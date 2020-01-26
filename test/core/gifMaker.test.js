@@ -8,28 +8,30 @@ const {
   mockKeyboard,
   frames,
   FILENAME,
-  fsMock,
-  gifEncoderMock,
+  fs,
+  gifEncoder,
   addFrame
 } = require('../mocks')
 
 const proxyquire = require('proxyquire').noCallThru()
 
 const gitMaker = proxyquire('../../core/gifMaker', {
-  fs: fsMock,
-  gifencoder: gifEncoderMock
+  fs: fs,
+  gifencoder: gifEncoder
 })
 
-describe('gifMaker', () => {
-  it('should generate a gif frame by frame', () => {
-    gitMaker.gif(options, mockKeyboard, frames, FILENAME)
-    expect(addFrame.callCount).to.equal(frames.length)
-  })
+describe('core/gifMaker', () => {
+  describe('#gif', () => {
+    it('should generate a gif frame by frame', () => {
+      gitMaker.gif(options, mockKeyboard, frames, FILENAME)
+      expect(addFrame.callCount).to.equal(frames.length)
+    })
 
-  describe('when it\'s no gifName', () => {
-    it('should create a random gif name', () => {
-      gitMaker.gif(options, mockKeyboard, frames)
-      sinon.assert.calledWith(fsMock.createWriteStream, sinon.match.string)
+    describe('when it\'s no gifName', () => {
+      it('should create a random gif name', () => {
+        gitMaker.gif(options, mockKeyboard, frames)
+        sinon.assert.calledWith(fs.createWriteStream, sinon.match.string)
+      })
     })
   })
 })

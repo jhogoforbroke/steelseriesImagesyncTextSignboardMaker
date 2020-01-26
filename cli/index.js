@@ -8,7 +8,7 @@ const figlet = require('figlet')
 const inquirer = require('inquirer')
 const { Spinner } = require('clui')
 
-const { text2Gif } = require('../core/signboard')
+const { createSign } = require('../core/signboard')
 const keyboard = require('../config/keyboard')
 
 const options = {
@@ -53,7 +53,7 @@ const execute = async () => {
 
   const spinner = new Spinner()
   spinner.start()
-  text2Gif(options, keyboard[keyboardType], background, text)
+  createSign(options, keyboard[keyboardType], background, { text })
   spinner.stop()
 
   console.log(chalk.blue('COMPLETE! Press any key to exit'))

@@ -13,37 +13,34 @@ const getAnimator = () => proxyquire('../../core/animator', {
   './ilustrator': ilustrator
 })
 
-describe('animator', () => {
-  describe('when animate left to right', () => {
-    const animator = getAnimator()
+describe('core/animator', () => {
+  describe('#leftToRight', () => {
+    describe('when animate left to right', () => {
+      const animator = getAnimator()
+      let frames
 
-    it('should make animates frames to whole keyboard space', () => {
-      //   PADLEFT KEYBOARD PADRIGHT
-      // |--------|--------|--------|
-      // | => SOME PHASE PASSING => |
-      // |--------|--------|--------|
-      const padLeftWidth = mockKeyboard.WIDTH
-      const padRightWidth = mockKeyboard.WIDTH
-      const wholeKeyboardExtension = (padLeftWidth + mockKeyboard.WIDTH + padRightWidth)
+      before(() => {
+        frames = animator.leftToRight(mockKeyboard, background, 'SOME TEXT')
+      })
 
-      const frames = animator.leftToRight(mockKeyboard, background, 'SOME TEXT')
+      it('should make animates frames to whole keyboard space', () => {
+        //   PADLEFT KEYBOARD PADRIGHT
+        // |--------|--------|--------|
+        // | => SOME PHASE PASSING => |
+        // |--------|--------|--------|
+        const padLeftWidth = mockKeyboard.WIDTH
+        const padRightWidth = mockKeyboard.WIDTH
+        const wholeKeyboardExtension = (padLeftWidth + mockKeyboard.WIDTH + padRightWidth)
+        expect(frames.length).to.equal(wholeKeyboardExtension / mockKeyboard.STEP)
+      })
 
-      expect(frames.length).to.equal(wholeKeyboardExtension / mockKeyboard.STEP)
-    })
+      it('should have send draw specifications by frame', () => {
+        expect(ilustrator.setDrawSpecifications.callCount).to.equal(frames.length)
+      })
 
-    it('should call to draw background of even frame', () => {
-      const frames = animator.leftToRight(mockKeyboard, background, 'SOME TEXT')
-      expect(ilustrator.drawBackground.callCount).to.equal(frames.length)
-    })
-
-    it('should call to draw text of even frame', () => {
-      const frames = animator.leftToRight(mockKeyboard, background, 'SOME TEXT')
-      expect(ilustrator.drawText.callCount).to.equal(frames.length)
-    })
-
-    afterEach(() => {
-      ilustrator.drawText.resetHistory()
-      ilustrator.drawBackground.resetHistory()
+      it('should have send to print frame by frame', () => {
+        expect(ilustrator.paint.callCount).to.equal(frames.length)
+      })
     })
   })
 })

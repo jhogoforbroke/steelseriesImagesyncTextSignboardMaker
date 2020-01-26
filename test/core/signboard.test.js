@@ -18,13 +18,15 @@ const signboard = proxyquire('../../core/signboard', {
 })
 
 describe('signboard', () => {
-  describe('when creates a gif', () => {
-    before(() => {
-      signboard.text2Gif(options, mockKeyboard, background, 'SOME TEXT TO GIF-UP!')
-    })
+  describe('#createSign', () => {
+    describe('when creates a gif', () => {
+      before(() => {
+        signboard.createSign(options, mockKeyboard, background, 'SOME TEXT TO GIF-UP!')
+      })
 
-    it('should call to generate a gif with frames', () => {
-      sinon.assert.calledWith(gifMaker.gif, sinon.match.any, sinon.match.any, frames, sinon.match.any)
+      it('should call to generate a gif with frames', () => {
+        sinon.assert.calledWith(gifMaker.gif, sinon.match.any, sinon.match.any, frames, sinon.match.any)
+      })
     })
   })
 })

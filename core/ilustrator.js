@@ -1,36 +1,82 @@
 'use strict'
 
-const canvasSpec = {}
 const { createCanvas } = require('canvas')
 
-const drawBackground = (keyboard, color) => {
-  canvasSpec.fillStyle = color
-  canvasSpec.fillRect = [0, 0, keyboard.WIDTH, keyboard.HEIGHT]
+const DEFAULT = {
+  background: {
+    color: '#000',
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0
+  },
+  text: {
+    color: '#FFF',
+    font: '50px Arial'
+  },
+  height: 0,
+  width: 0
+}
+
+const canvasSpec = DEFAULT
+
+const setKeyboardCanvas = (keyboard) => {
   canvasSpec.height = keyboard.HEIGHT
   canvasSpec.width = keyboard.WIDTH
 }
 
-const drawText = (keyboard, text, x, y, font) => {
-  canvasSpec.font = '50px Arial'
-  canvasSpec.strokeStyle = '#FFF'
-  canvasSpec.strokeText = [text, x, y]
-  canvasSpec.height = keyboard.HEIGHT
-  canvasSpec.width = keyboard.WIDTH
+const setBackgroundSpec = ({ color = DEFAULT.background.color }) => {
+  canvasSpec.background.color = color
+  canvasSpec.background.width = canvasSpec.width
+  canvasSpec.background.height = canvasSpec.height
 }
 
-const getCanvasCopy = () => {
+const setTextSpec = ({ text, x, y, font = DEFAULT.text.font, color = DEFAULT.text.color }) => {
+  canvasSpec.text.font = font
+  canvasSpec.text.color = color
+  canvasSpec.text.text = text
+  canvasSpec.text.x = x
+  canvasSpec.text.y = y
+  canvasSpec.strokeText = { text, x, y }
+}
+
+const setDrawSpecifications = (keyboard, background, text) => {
+  setKeyboardCanvas(keyboard)
+  setBackgroundSpec(background)
+  setTextSpec(text)
+}
+
+const paintBackgrount = (ctx) => {
+  ctx.fillStyle = canvasSpec.background.color
+  ctx.fillRect(
+    canvasSpec.background.x,
+    canvasSpec.background.y,
+    canvasSpec.background.width,
+    canvasSpec.background.height
+  )
+}
+
+const paintText = (ctx) => {
+  ctx.font = canvasSpec.text.font
+  ctx.strokeStyle = canvasSpec.text.color
+  ctx.strokeText(
+    canvasSpec.text.text,
+    canvasSpec.text.x,
+    canvasSpec.text.y
+  )
+}
+
+const paint = () => {
   const canvas = createCanvas(canvasSpec.width, canvasSpec.height)
   const ctx = canvas.getContext('2d')
-  ctx.fillStyle = canvasSpec.fillStyle
-  ctx.fillRect(canvasSpec.fillRect[0], canvasSpec.fillRect[1], canvasSpec.fillRect[2], canvasSpec.fillRect[3])
-  ctx.font = canvasSpec.font
-  ctx.strokeStyle = canvasSpec.strokeStyle
-  ctx.strokeText(canvasSpec.strokeText[0], canvasSpec.strokeText[1], canvasSpec.strokeText[2])
+
+  paintBackgrount(ctx)
+  paintText(ctx)
+
   return ctx
 }
 
 module.exports = {
-  drawBackground,
-  drawText,
-  getCanvasCopy
+  setDrawSpecifications,
+  paint
 }

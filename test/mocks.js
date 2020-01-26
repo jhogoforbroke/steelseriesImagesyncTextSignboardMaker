@@ -2,6 +2,10 @@
 
 const sinon = require('sinon')
 
+const ilustrator = require('../core/ilustrator')
+sinon.stub(ilustrator, 'setDrawSpecifications').callThrough()
+sinon.stub(ilustrator, 'paint')
+
 const REPEAT = 0
 const DELAY = 500
 const QUALITY = 10
@@ -32,20 +36,14 @@ const gifMaker = {
   gif: sinon.spy()
 }
 
-const ilustrator = {
-  drawBackground: sinon.spy(),
-  drawText: sinon.spy(),
-  getCanvasCopy: sinon.stub().returns({})
-}
-
-const canvas = {
+const ctx = {
   fillRect: sinon.spy(),
   strokeText: sinon.spy()
 }
-canvas.getContext = sinon.stub().returns(canvas)
+ctx.getContext = sinon.stub().returns(ctx)
 
-const canvasMock = {
-  createCanvas: sinon.stub().returns(canvas)
+const canvas = {
+  createCanvas: sinon.stub().returns(ctx)
 }
 
 const POSX = 10
@@ -56,13 +54,13 @@ const color = '#000'
 
 const FILENAME = 'SOMEFILENAME.gif'
 
-const fsMock = {
+const fs = {
   createWriteStream: sinon.spy()
 }
 
 const addFrame = sinon.spy()
 
-function gifEncoderMock () {
+function gifEncoder () {
   this.createReadStream = () => ({ pipe: sinon.spy() })
   this.start = sinon.spy()
   this.setRepeat = sinon.spy()
@@ -81,13 +79,13 @@ module.exports = {
   gifMaker,
   ilustrator,
   canvas,
-  canvasMock,
+  ctx,
   POSX,
   POSY,
   text,
   color,
   FILENAME,
-  fsMock,
-  gifEncoderMock,
+  fs,
+  gifEncoder,
   addFrame
 }
